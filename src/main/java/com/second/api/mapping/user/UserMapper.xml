@@ -5,11 +5,11 @@
 	<resultMap id = "getUserInfo" type = "com.second.api.model.user.User">
 		<id column="id" property="id" />
     	<result column="mobile" property="mobile" />
-    	<result column="name" property="userName" />
+    	<result column="userName" property="name" />
 	</resultMap>
 
 	<select id = "getUserInfo" resultMap = "getUserInfo" parameterType = "String">
-		SELECT id,mobile,userName FROM yyq_user WHERE userName = #{name}
+		SELECT id,mobile,userName FROM yyq_user WHERE userName = #{names}
 	</select>
 
 </mapper>

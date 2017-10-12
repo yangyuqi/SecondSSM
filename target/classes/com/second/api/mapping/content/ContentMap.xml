@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.second.api.dao.content.ContentDao">
+
+	<resultMap type="com.second.api.model.content.Content" id="getContentByUserName">
+		<id column = "id" property = "id"></id>
+		<result column = "userName" property ="userName"/>
+		<result column = "content" property ="content"/>
+	</resultMap>
+
+	<select id="getContentByUserName" parameterType="String" resultMap>
+		SELECT *FROM yyq_user 
+	</select>
+
+</mapper>

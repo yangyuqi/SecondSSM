@@ -1,5 +1,6 @@
 package com.second.api.controller.user;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.second.api.config.ResultCode;
+import com.second.api.model.JsonResult;
 import com.second.api.model.user.User;
 import com.second.api.service.user.UserServiceImp;
 
@@ -23,10 +26,17 @@ public class UserControlller {
 	
 	@RequestMapping("info/mobile")
 	@ResponseBody
-	public User getUserInfo(HttpServletRequest request ,HttpServletResponse response ,@RequestBody Map<String, Object> map){
+	public JsonResult getUserInfo(HttpServletRequest request ,HttpServletResponse response ,@RequestBody Map<String, Object> map){
+		JsonResult result = new JsonResult();
+		result.setCodeAndMsg(ResultCode.SUCCESS);
 		User user = new User();
 		String name = (String) map.get("name");
 		user = UserServiceImp.getUserInfo(name);
-		return user;
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("id", user.getId());
+		data.put("name", user.getName());
+		data.put("mobile", user.getMobile());
+		result.setData(data);
+		return result;
 	}
 }

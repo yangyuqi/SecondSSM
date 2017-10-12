@@ -6,5 +6,5 @@ import com.second.api.model.user.User;
 
 public interface UserDao {
 
-	User getUserInfo(@Param("name")String name);
+	User getUserInfo(@Param("names")String name);
 }
