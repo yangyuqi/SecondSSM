@@ -8,8 +8,25 @@
 		<result column = "content" property ="content"/>
 	</resultMap>
 
-	<select id="getContentByUserName" parameterType="String" resultMap>
-		SELECT *FROM yyq_user 
+	<select id="getContentByUserName" parameterType="Integer" resultMap = "getContentByUserName">
+		SELECT y_user.userName AS userName , y_content.content AS content , y_user.id AS id FROM yyq_user y_user LEFT JOIN yyq_content y_content on y_user.userName=y_content.userName
+		WHERE y_user.id = #{id}
 	</select>
+
+	<select id="getAllContent" parameterType="String" resultMap="getContentByUserName">
+		SELECT id,userName ,content from yyq_content WHERE userName = #{name}
+	</select>
+
+	<insert id= "addNewContent" parameterType ="java.util.Map">
+		INSERT INTO yyq_content(userName ,content) VALUES (#{name},#{content})
+	</insert>
+
+	<delete id = "deleteContent" parameterType ="Integer">
+		DELETE FROM yyq_content WHERE id = #{id}
+	</delete>
+
+	<update id="updateContent" parameterType = "java.util.Map">
+		UPDATE yyq_content SET content = #{content} WHERE id = #{id}
+	</update>
 
 </mapper>

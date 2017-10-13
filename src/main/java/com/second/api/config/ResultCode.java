@@ -1,8 +1,9 @@
 package com.second.api.config;
 
 public enum ResultCode {
-	SUCCESS("200", "成功");
-	
+	SUCCESS("200", "成功"),
+	FAILED("300","失败"),
+	FAILEDPARAME("400","参数错误");
 	
 	private String code;
 	private String msg;
